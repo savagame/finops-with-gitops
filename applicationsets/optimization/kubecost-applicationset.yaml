@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kubecost
+  namespace: argocd
+spec:
+  generators:
+    - clusters:
+        selector:
+          matchLabels:
+            kubecost: "enabled"
+  template:
+    metadata:
+      name: "{{name}}-kubecost"
+    spec:
+      project: default
+      destination:
+        server: "{{server}}"
+        namespace: kubecost
+      source:
+        repoURL: "https://github.com/your-org/gitops-finops-demo.git"
+        targetRevision: main
+        path: optimization/kubecost
+        helm:
+          valueFiles:
+            - values.yaml
+            - ../../cluster/{{name}}/optimization/kubecost/values.yaml
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

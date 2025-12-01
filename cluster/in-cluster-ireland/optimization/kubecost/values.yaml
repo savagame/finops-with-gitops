@@ -1,0 +1,15 @@
+notifications:
+  alertConfigs:
+    alerts:
+      # Austria has project namespaces project-a-at & project-b-at
+      - type: budget
+        threshold: 500
+        window: monthly
+        aggregation: namespace
+        filter: project-a-at
+
+      - type: budget
+        threshold: 500
+        window: monthly
+        aggregation: namespace
+        filter: project-b-at
