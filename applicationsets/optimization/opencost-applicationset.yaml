@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: opencost
+  namespace: argocd
+spec:
+  generators:
+    - clusters:
+        selector:
+          matchLabels:
+            opencost: "enabled"
+  template:
+    metadata:
+      name: "{{name}}-opencost"
+    spec:
+      project: default
+      destination:
+        server: "{{server}}"
+        namespace: opencost
+      source:
+        repoURL: "https://github.com/savagame/finops-with-gitops.git"
+        targetRevision: main
+        path: optimization/opencost
+        helm:
+          valueFiles:
+            - values.yaml
+            - ../../cluster/{{name}}/optimization/opencost/values.yaml
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

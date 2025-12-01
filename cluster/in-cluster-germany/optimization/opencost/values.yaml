@@ -1,0 +1,8 @@
+opencost:
+  customPricing:
+    enabled: true
+    costModel:
+      description: "Germany DC pricing"
+      CPU: 0.0330
+      RAM: 0.0046
+      storage: 0.00022

@@ -1,0 +1,9 @@
+apiVersion: v2
+name: opencost-umbrella
+description: GitOps-managed OpenCost with per-cluster pricing
+type: application
+version: 0.1.0
+dependencies:
+  - name: opencost
+    version: 1.37.0
+    repository: https://opencost.github.io/opencost-helm/

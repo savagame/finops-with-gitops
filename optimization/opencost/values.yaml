@@ -1,0 +1,9 @@
+opencost:
+  kubecostToken: "demo-token"
+  customPricing:
+    enabled: true
+    costModel:
+      description: "Default pricing - GCP us-central-1 style"
+      CPU: 0.031611
+      RAM: 0.004237
+      storage: 0.0002

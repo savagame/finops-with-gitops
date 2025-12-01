@@ -1,0 +1,8 @@
+opencost:
+  customPricing:
+    enabled: true
+    costModel:
+      description: "Ireland DC pricing"
+      CPU: 0.0300
+      RAM: 0.0041
+      storage: 0.00020
